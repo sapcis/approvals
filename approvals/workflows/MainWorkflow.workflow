@@ -23,7 +23,7 @@
 					"name": "Ответственный департамент"
 				},
 				"f3587a60-b3fc-498a-a95c-d2ec0afe53e9": {
-					"name": "Координатор закупок"
+					"name": "Координатор закупок (оценка заявки)"
 				},
 				"161d1f7b-af07-4cc2-8b76-a513314715b4": {
 					"name": "решение"
@@ -38,7 +38,7 @@
 					"name": "решение"
 				},
 				"b742f214-fb62-4bd1-b46b-603fb25fc7c8": {
-					"name": "Публикация тендера"
+					"name": "Координатор закупок (подгтовка материалов по тендеру)"
 				},
 				"21613ebe-87dc-496e-9e04-37e38e3d9f5b": {
 					"name": "результат обработки замечаний"
@@ -117,7 +117,7 @@
 			"classDefinition": "com.sap.bpm.wfs.ReferencedSubflow",
 			"definitionId": "Workflow2",
 			"id": "referencedsubflow2",
-			"name": "Координатор закупок"
+			"name": "Координатор закупок (оценка заявки)"
 		},
 		"161d1f7b-af07-4cc2-8b76-a513314715b4": {
 			"classDefinition": "com.sap.bpm.wfs.ExclusiveGateway",
@@ -147,7 +147,7 @@
 			"classDefinition": "com.sap.bpm.wfs.ReferencedSubflow",
 			"definitionId": "Workflow5",
 			"id": "referencedsubflow6",
-			"name": "Публикация тендера"
+			"name": "Координатор закупок (подгтовка материалов по тендеру)"
 		},
 		"21613ebe-87dc-496e-9e04-37e38e3d9f5b": {
 			"classDefinition": "com.sap.bpm.wfs.ExclusiveGateway",
@@ -295,8 +295,8 @@
 		},
 		"53e54950-7757-4161-82c9-afa7e86cff2c": {
 			"classDefinition": "com.sap.bpm.wfs.ui.EndEventSymbol",
-			"x": 1357,
-			"y": 100,
+			"x": 1480,
+			"y": 98,
 			"width": 35,
 			"height": 35,
 			"object": "2798f4e7-bc42-4fad-a248-159095a2f40a"
@@ -318,15 +318,16 @@
 		},
 		"f25083ac-c740-4556-b850-061a1562f6eb": {
 			"classDefinition": "com.sap.bpm.wfs.ui.ReferencedSubflowSymbol",
-			"x": 345,
+			"isAdjustToContent": false,
+			"x": 340,
 			"y": 86,
-			"width": 100,
+			"width": 126,
 			"height": 60,
 			"object": "f3587a60-b3fc-498a-a95c-d2ec0afe53e9"
 		},
 		"209af80e-809b-4ce7-a6a7-2fc58176cd66": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "395,116 520,116",
+			"points": "403,116 520,116",
 			"sourceSymbol": "f25083ac-c740-4556-b850-061a1562f6eb",
 			"targetSymbol": "15cb2bfa-dded-4fcb-971c-e6e95fc390c9",
 			"object": "0cac1e3c-50b2-4e5e-bb26-9bde62e561c5"
@@ -369,7 +370,7 @@
 		},
 		"905b6aa7-512a-4f55-9455-9f8802b5c613": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "1151,116 1281,116",
+			"points": "1151,116 1339,116",
 			"sourceSymbol": "fd458072-64ff-4a81-95d6-bc26c3f0ecb3",
 			"targetSymbol": "e9a9287a-5713-45ed-b57e-8ae1f659af2c",
 			"object": "cf5bbe4d-972d-44ab-9aaf-42922f0c35c8"
@@ -389,7 +390,7 @@
 		},
 		"9dfdd56f-132a-4baf-a28e-54360df466ce": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "795,116 995,116",
+			"points": "795,116 985,116",
 			"sourceSymbol": "73e451c2-c9b9-493d-9b07-319de16a6a6b",
 			"targetSymbol": "8b9c33c4-88a2-42f6-8c8e-b7f174a31333",
 			"object": "fa8b4015-3165-4445-b042-9cecdf851b52"
@@ -403,22 +404,23 @@
 		},
 		"e9a9287a-5713-45ed-b57e-8ae1f659af2c": {
 			"classDefinition": "com.sap.bpm.wfs.ui.ReferencedSubflowSymbol",
-			"x": 1231,
+			"isAdjustToContent": false,
+			"x": 1267,
 			"y": 86,
-			"width": 100,
+			"width": 144,
 			"height": 60,
 			"object": "b742f214-fb62-4bd1-b46b-603fb25fc7c8"
 		},
 		"0d3b5f5f-0486-40ef-af67-18b6cc0ba53c": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "1281,116.75 1374.5,116.75",
+			"points": "1339,115.75 1497.5,115.75",
 			"sourceSymbol": "e9a9287a-5713-45ed-b57e-8ae1f659af2c",
 			"targetSymbol": "53e54950-7757-4161-82c9-afa7e86cff2c",
 			"object": "b5a8e534-fff0-4dc0-bc13-0e4e9f155c10"
 		},
 		"b1b0dcac-0d01-45a9-af05-3ad578a6c58d": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "-98,-39 395,-39 395,86.5",
+			"points": "-98,-39 403,-39 403,86.5",
 			"sourceSymbol": "df898b52-91e1-4778-baad-2ad9a261d30e",
 			"targetSymbol": "f25083ac-c740-4556-b850-061a1562f6eb",
 			"object": "14304f74-4d16-4c1e-8e3e-c9a26c781ee3"
@@ -431,7 +433,7 @@
 		},
 		"e34da841-f7ca-415a-acd3-de9b74d35edd": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "159,116 395,116",
+			"points": "159,116 403,116",
 			"sourceSymbol": "ed80e43f-4704-46b3-bffd-729215b6458c",
 			"targetSymbol": "f25083ac-c740-4556-b850-061a1562f6eb",
 			"object": "721a4e00-0351-48ea-91f4-0ad32106a97e"
@@ -453,15 +455,16 @@
 		},
 		"8b9c33c4-88a2-42f6-8c8e-b7f174a31333": {
 			"classDefinition": "com.sap.bpm.wfs.ui.ReferencedSubflowSymbol",
-			"x": 945,
+			"isAdjustToContent": false,
+			"x": 925,
 			"y": 86,
-			"width": 100,
+			"width": 120,
 			"height": 60,
 			"object": "ea0be43b-b963-42cc-a4cb-de971f8adb86"
 		},
 		"b7b986be-9592-4a7d-b3c5-fa72e0b236b7": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "995,116 1151,116",
+			"points": "985,116 1151,116",
 			"sourceSymbol": "8b9c33c4-88a2-42f6-8c8e-b7f174a31333",
 			"targetSymbol": "fd458072-64ff-4a81-95d6-bc26c3f0ecb3",
 			"object": "f497d349-fb45-4efe-97e4-6e56600c8ae2"
