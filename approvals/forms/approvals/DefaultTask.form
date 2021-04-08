@@ -1,0 +1,21 @@
+{
+    "id": "defaulttask",
+    "schemaVersion": "1.1.0",
+    "name": "DefaultTask",
+    "revision": "1.0",
+    "type": "task",
+    "readOnly": false,
+    "content": [],
+    "decisions": [
+        {
+            "id": "approve",
+            "text": "Утвердить",
+            "decisionType": "positive"
+        },
+        {
+            "id": "reject",
+            "text": "Отклонить",
+            "decisionType": "negative"
+        }
+    ]
+}
