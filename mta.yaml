@@ -6,12 +6,12 @@ modules:
     type: com.sap.application.content
     path: approvals
     requires:
-      - name: workflow_mta
+      - name: workflow
         parameters:
           content-target: true
 resources:
-  - name: workflow_mta
+  - name: workflow
     parameters:
-      service-plan: lite
+      service-plan: standard
       service: workflow
-    type: org.cloudfoundry.managed-service
+    type: org.cloudfoundry.existing-service

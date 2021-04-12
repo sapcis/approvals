@@ -237,7 +237,7 @@
 		},
 		"101472dc-fb13-4e32-a672-5124d01bfe1d": {
 			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"condition": "${context.lastDecision = \"approve\"}",
+			"condition": "${context.lastDecision == \"approve\"}",
 			"id": "sequenceflow5",
 			"name": "есть недостатки",
 			"sourceRef": "b667dbe3-0b27-4106-bc01-f40517920e3f",

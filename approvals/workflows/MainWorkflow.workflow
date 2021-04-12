@@ -184,7 +184,7 @@
 		},
 		"67ab8043-cf81-45ad-83af-3eb21d0dc956": {
 			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"condition": "${context.lastDecision = \"reject\"}",
+			"condition": "${context.lastDecision == \"reject\"}",
 			"id": "sequenceflow5",
 			"name": "Существуют несоответствия",
 			"sourceRef": "161d1f7b-af07-4cc2-8b76-a513314715b4",
@@ -213,7 +213,7 @@
 		},
 		"48768cab-16ad-4db1-bd1e-16025f3b5c73": {
 			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"condition": "${context.lastDecision = \"reject\"}",
+			"condition": "${context.lastDecision == \"reject\"}",
 			"id": "sequenceflow11",
 			"name": "Существуют несоответствия",
 			"sourceRef": "c3251c6c-fde2-41d1-8c66-4e553bc198df",
@@ -242,7 +242,7 @@
 		},
 		"1a2e3d38-a907-447d-9bd6-9c9df4d4d789": {
 			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"condition": "${context.lastDecision = \"reject\"}",
+			"condition": "${context.lastDecision == \"reject\"}",
 			"id": "sequenceflow15",
 			"name": "Отказ от предложения",
 			"sourceRef": "21613ebe-87dc-496e-9e04-37e38e3d9f5b",

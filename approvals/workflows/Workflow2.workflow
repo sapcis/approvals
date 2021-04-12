@@ -101,6 +101,16 @@
 			"id": "endevent2",
 			"name": "EndEvent2"
 		},
+		"e9a683d3-c267-45d2-87d6-f7e2fbf7a725": {
+			"classDefinition": "com.sap.bpm.wfs.EndEvent",
+			"id": "endevent3",
+			"name": "EndEvent3"
+		},
+		"20941c0e-003e-45c0-84bc-21a08d0990f7": {
+			"classDefinition": "com.sap.bpm.wfs.EndEvent",
+			"id": "endevent4",
+			"name": "EndEvent4"
+		},
 		"7a261786-1bee-4cf3-9cb6-e42ce8a785f2": {
 			"classDefinition": "com.sap.bpm.wfs.UserTask",
 			"subject": "Заявка на тендер №1",
@@ -145,6 +155,56 @@
 			"id": "usertask2",
 			"name": "Разработка и отправка проекта приказа"
 		},
+		"5afb7d35-0c0a-4c8d-8c89-300abeabeb14": {
+			"classDefinition": "com.sap.bpm.wfs.ExclusiveGateway",
+			"id": "exclusivegateway2",
+			"name": "шаг процесса",
+			"default": "061e09a7-d157-47ea-bfe6-969709cab447"
+		},
+		"39912f56-c025-481f-aaa4-fa1d2d70c897": {
+			"classDefinition": "com.sap.bpm.wfs.UserTask",
+			"subject": "Заявка на тендер №1",
+			"priority": "MEDIUM",
+			"isHiddenInLogForParticipant": false,
+			"supportsForward": false,
+			"userInterface": "sapui5://comsapbpmworkflow.comsapbpmwusformplayer/com.sap.bpm.wus.form.player",
+			"recipientUsers": "i053246",
+			"formReference": "/forms/approvals/DefaultTask.form",
+			"userInterfaceParams": [{
+				"key": "formId",
+				"value": "defaulttask"
+			}, {
+				"key": "formRevision",
+				"value": "1.0"
+			}],
+			"id": "usertask3",
+			"name": "Подготовка текстов приглашений"
+		},
+		"461200a3-8d94-4324-8d88-5305fb9d9e56": {
+			"classDefinition": "com.sap.bpm.wfs.MailTask",
+			"id": "mailtask1",
+			"name": "Рассылка приглашений",
+			"mailDefinitionRef": "daeaa949-6872-478d-83cf-0627a98f5a92"
+		},
+		"a7518173-f0f1-48eb-b0f7-a29d9b9306a2": {
+			"classDefinition": "com.sap.bpm.wfs.UserTask",
+			"subject": "Заявка на тендер №1",
+			"priority": "MEDIUM",
+			"isHiddenInLogForParticipant": false,
+			"supportsForward": false,
+			"userInterface": "sapui5://comsapbpmworkflow.comsapbpmwusformplayer/com.sap.bpm.wus.form.player",
+			"recipientUsers": "i053246",
+			"formReference": "/forms/approvals/DefaultTask.form",
+			"userInterfaceParams": [{
+				"key": "formId",
+				"value": "defaulttask"
+			}, {
+				"key": "formRevision",
+				"value": "1.0"
+			}],
+			"id": "usertask5",
+			"name": "Подготовка материалов для объявления тендера"
+		},
 		"c6b99f32-5fe6-4ab6-b60a-80fba1b9ae0f": {
 			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
 			"id": "sequenceflow1",
@@ -168,7 +228,7 @@
 		},
 		"774aea84-3111-4bca-800e-5d882a544f7f": {
 			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"condition": "${context.lastDecision = \"approve\"}",
+			"condition": "${context.lastDecision == \"approve\"}",
 			"id": "sequenceflow4",
 			"name": "Соответствует",
 			"sourceRef": "0a547dc9-f2e9-4af5-863c-aadbde2b1511",
@@ -180,6 +240,50 @@
 			"name": "SequenceFlow5",
 			"sourceRef": "0a955b90-5e2a-4aff-8f53-e6926a6a4701",
 			"targetRef": "9d0e8378-09be-4162-b862-46cf0f3c6580"
+		},
+		"061e09a7-d157-47ea-bfe6-969709cab447": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"id": "sequenceflow6",
+			"name": "оценка заявки",
+			"sourceRef": "5afb7d35-0c0a-4c8d-8c89-300abeabeb14",
+			"targetRef": "7a261786-1bee-4cf3-9cb6-e42ce8a785f2"
+		},
+		"811b96cf-3c19-48ef-ae1b-f6c5bf7849ff": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"condition": "${context.stepName == \"InvitationPrep\"}",
+			"id": "sequenceflow7",
+			"name": "подготовка приглашений",
+			"sourceRef": "5afb7d35-0c0a-4c8d-8c89-300abeabeb14",
+			"targetRef": "39912f56-c025-481f-aaa4-fa1d2d70c897"
+		},
+		"c6432212-1a85-4435-8e1e-e544c820e6ff": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"id": "sequenceflow8",
+			"name": "SequenceFlow8",
+			"sourceRef": "39912f56-c025-481f-aaa4-fa1d2d70c897",
+			"targetRef": "461200a3-8d94-4324-8d88-5305fb9d9e56"
+		},
+		"767c94bb-1bc1-4533-bafd-f787ea4a9b72": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"id": "sequenceflow10",
+			"name": "SequenceFlow10",
+			"sourceRef": "461200a3-8d94-4324-8d88-5305fb9d9e56",
+			"targetRef": "e9a683d3-c267-45d2-87d6-f7e2fbf7a725"
+		},
+		"bc1a19bd-a2ce-4213-a390-d8584ebfacf1": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"id": "sequenceflow11",
+			"name": "SequenceFlow11",
+			"sourceRef": "a7518173-f0f1-48eb-b0f7-a29d9b9306a2",
+			"targetRef": "20941c0e-003e-45c0-84bc-21a08d0990f7"
+		},
+		"e8c1153c-4db5-4294-b275-dd328af29385": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"condition": "${context.stepName == \"InvitationPrep\"}",
+			"id": "sequenceflow12",
+			"name": "подготовка материалов тендера",
+			"sourceRef": "5afb7d35-0c0a-4c8d-8c89-300abeabeb14",
+			"targetRef": "a7518173-f0f1-48eb-b0f7-a29d9b9306a2"
 		},
 		"42fa7a2d-c526-4a02-b3ba-49b5168ba644": {
 			"classDefinition": "com.sap.bpm.wfs.ui.Diagram",
@@ -290,6 +394,94 @@
 			"targetSymbol": "447755f6-464a-4f46-8ed0-651e7413e714",
 			"object": "eff6fe3b-39da-47c0-be20-911e1b295948"
 		},
+		"e69d9037-0dc8-4ad1-92d4-c0285dd78fb7": {
+			"classDefinition": "com.sap.bpm.wfs.ui.ExclusiveGatewaySymbol",
+			"x": -22,
+			"y": 94,
+			"object": "5afb7d35-0c0a-4c8d-8c89-300abeabeb14"
+		},
+		"8073eac8-2a09-421d-9200-c7d4bf4dc57d": {
+			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
+			"points": "-1,135.5 -1,256 247,256",
+			"sourceSymbol": "e69d9037-0dc8-4ad1-92d4-c0285dd78fb7",
+			"targetSymbol": "c2986693-5369-4e9f-bf31-1779943b4bc2",
+			"object": "061e09a7-d157-47ea-bfe6-969709cab447"
+		},
+		"a8c60412-4bf5-4376-bcaa-034322997787": {
+			"classDefinition": "com.sap.bpm.wfs.ui.UserTaskSymbol",
+			"x": 197,
+			"y": 85,
+			"width": 100,
+			"height": 60,
+			"object": "39912f56-c025-481f-aaa4-fa1d2d70c897"
+		},
+		"a3240b8d-a944-4273-8da7-d79636fc93fb": {
+			"classDefinition": "com.sap.bpm.wfs.ui.EndEventSymbol",
+			"x": 559.5,
+			"y": 97.5,
+			"width": 35,
+			"height": 35,
+			"object": "e9a683d3-c267-45d2-87d6-f7e2fbf7a725"
+		},
+		"de6a947b-2ca4-4725-b266-b0deacb78d48": {
+			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
+			"points": "19.5,115 197.5,115",
+			"sourceSymbol": "e69d9037-0dc8-4ad1-92d4-c0285dd78fb7",
+			"targetSymbol": "a8c60412-4bf5-4376-bcaa-034322997787",
+			"object": "811b96cf-3c19-48ef-ae1b-f6c5bf7849ff"
+		},
+		"ccef1938-15ca-4c40-a21b-d65f40e7b839": {
+			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
+			"points": "247,115 420,115",
+			"sourceSymbol": "a8c60412-4bf5-4376-bcaa-034322997787",
+			"targetSymbol": "60593ed7-d58f-472c-9103-c3899edd2800",
+			"object": "c6432212-1a85-4435-8e1e-e544c820e6ff"
+		},
+		"60593ed7-d58f-472c-9103-c3899edd2800": {
+			"classDefinition": "com.sap.bpm.wfs.ui.MailTaskSymbol",
+			"x": 370,
+			"y": 85,
+			"width": 100,
+			"height": 60,
+			"object": "461200a3-8d94-4324-8d88-5305fb9d9e56"
+		},
+		"df63ffd0-ca17-4d29-a3ae-003c4318c588": {
+			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
+			"points": "420,115 577,115",
+			"sourceSymbol": "60593ed7-d58f-472c-9103-c3899edd2800",
+			"targetSymbol": "a3240b8d-a944-4273-8da7-d79636fc93fb",
+			"object": "767c94bb-1bc1-4533-bafd-f787ea4a9b72"
+		},
+		"0fccb593-f56f-4d68-a5cd-858ffc360194": {
+			"classDefinition": "com.sap.bpm.wfs.ui.UserTaskSymbol",
+			"x": 197,
+			"y": -67,
+			"width": 100,
+			"height": 60,
+			"object": "a7518173-f0f1-48eb-b0f7-a29d9b9306a2"
+		},
+		"9e62952b-1688-4064-8d71-18781bb6cc61": {
+			"classDefinition": "com.sap.bpm.wfs.ui.EndEventSymbol",
+			"x": 402,
+			"y": -54.5,
+			"width": 35,
+			"height": 35,
+			"object": "20941c0e-003e-45c0-84bc-21a08d0990f7"
+		},
+		"c43c27be-67f9-47e1-b8b8-bd1ef2c2cf85": {
+			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
+			"points": "247,-37 419.5,-37",
+			"sourceSymbol": "0fccb593-f56f-4d68-a5cd-858ffc360194",
+			"targetSymbol": "9e62952b-1688-4064-8d71-18781bb6cc61",
+			"object": "bc1a19bd-a2ce-4213-a390-d8584ebfacf1"
+		},
+		"a88aece2-badf-4517-804f-b9e8f4c52fd2": {
+			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
+			"points": "-1,94.5 -1,-37 197.5,-37",
+			"sourceSymbol": "e69d9037-0dc8-4ad1-92d4-c0285dd78fb7",
+			"targetSymbol": "0fccb593-f56f-4d68-a5cd-858ffc360194",
+			"object": "e8c1153c-4db5-4294-b275-dd328af29385"
+		},
 		"62d7f4ed-4063-4c44-af8b-39050bd44926": {
 			"classDefinition": "com.sap.bpm.wfs.LastIDs",
 			"maildefinition": 1,
@@ -300,129 +492,6 @@
 			"mailtask": 1,
 			"exclusivegateway": 2
 		},
-		"5afb7d35-0c0a-4c8d-8c89-300abeabeb14": {
-			"classDefinition": "com.sap.bpm.wfs.ExclusiveGateway",
-			"id": "exclusivegateway2",
-			"name": "шаг процесса",
-			"default": "061e09a7-d157-47ea-bfe6-969709cab447"
-		},
-		"e69d9037-0dc8-4ad1-92d4-c0285dd78fb7": {
-			"classDefinition": "com.sap.bpm.wfs.ui.ExclusiveGatewaySymbol",
-			"x": -22,
-			"y": 94,
-			"object": "5afb7d35-0c0a-4c8d-8c89-300abeabeb14"
-		},
-		"061e09a7-d157-47ea-bfe6-969709cab447": {
-			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"id": "sequenceflow6",
-			"name": "оценка заявки",
-			"sourceRef": "5afb7d35-0c0a-4c8d-8c89-300abeabeb14",
-			"targetRef": "7a261786-1bee-4cf3-9cb6-e42ce8a785f2"
-		},
-		"8073eac8-2a09-421d-9200-c7d4bf4dc57d": {
-			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "-1,135.5 -1,256 247,256",
-			"sourceSymbol": "e69d9037-0dc8-4ad1-92d4-c0285dd78fb7",
-			"targetSymbol": "c2986693-5369-4e9f-bf31-1779943b4bc2",
-			"object": "061e09a7-d157-47ea-bfe6-969709cab447"
-		},
-		"39912f56-c025-481f-aaa4-fa1d2d70c897": {
-			"classDefinition": "com.sap.bpm.wfs.UserTask",
-			"subject": "Заявка на тендер №1",
-			"priority": "MEDIUM",
-			"isHiddenInLogForParticipant": false,
-			"supportsForward": false,
-			"userInterface": "sapui5://comsapbpmworkflow.comsapbpmwusformplayer/com.sap.bpm.wus.form.player",
-			"recipientUsers": "i053246",
-			"formReference": "/forms/approvals/DefaultTask.form",
-			"userInterfaceParams": [{
-				"key": "formId",
-				"value": "defaulttask"
-			}, {
-				"key": "formRevision",
-				"value": "1.0"
-			}],
-			"id": "usertask3",
-			"name": "Подготовка текстов приглашений"
-		},
-		"a8c60412-4bf5-4376-bcaa-034322997787": {
-			"classDefinition": "com.sap.bpm.wfs.ui.UserTaskSymbol",
-			"x": 197,
-			"y": 85,
-			"width": 100,
-			"height": 60,
-			"object": "39912f56-c025-481f-aaa4-fa1d2d70c897"
-		},
-		"e9a683d3-c267-45d2-87d6-f7e2fbf7a725": {
-			"classDefinition": "com.sap.bpm.wfs.EndEvent",
-			"id": "endevent3",
-			"name": "EndEvent3"
-		},
-		"a3240b8d-a944-4273-8da7-d79636fc93fb": {
-			"classDefinition": "com.sap.bpm.wfs.ui.EndEventSymbol",
-			"x": 559.5,
-			"y": 97.5,
-			"width": 35,
-			"height": 35,
-			"object": "e9a683d3-c267-45d2-87d6-f7e2fbf7a725"
-		},
-		"811b96cf-3c19-48ef-ae1b-f6c5bf7849ff": {
-			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"condition": "${context.stepName = \"InvitationPrep\"}",
-			"id": "sequenceflow7",
-			"name": "подготовка приглашений",
-			"sourceRef": "5afb7d35-0c0a-4c8d-8c89-300abeabeb14",
-			"targetRef": "39912f56-c025-481f-aaa4-fa1d2d70c897"
-		},
-		"de6a947b-2ca4-4725-b266-b0deacb78d48": {
-			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "19.5,115 197.5,115",
-			"sourceSymbol": "e69d9037-0dc8-4ad1-92d4-c0285dd78fb7",
-			"targetSymbol": "a8c60412-4bf5-4376-bcaa-034322997787",
-			"object": "811b96cf-3c19-48ef-ae1b-f6c5bf7849ff"
-		},
-		"c6432212-1a85-4435-8e1e-e544c820e6ff": {
-			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"id": "sequenceflow8",
-			"name": "SequenceFlow8",
-			"sourceRef": "39912f56-c025-481f-aaa4-fa1d2d70c897",
-			"targetRef": "461200a3-8d94-4324-8d88-5305fb9d9e56"
-		},
-		"ccef1938-15ca-4c40-a21b-d65f40e7b839": {
-			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "247,115 420,115",
-			"sourceSymbol": "a8c60412-4bf5-4376-bcaa-034322997787",
-			"targetSymbol": "60593ed7-d58f-472c-9103-c3899edd2800",
-			"object": "c6432212-1a85-4435-8e1e-e544c820e6ff"
-		},
-		"461200a3-8d94-4324-8d88-5305fb9d9e56": {
-			"classDefinition": "com.sap.bpm.wfs.MailTask",
-			"id": "mailtask1",
-			"name": "Рассылка приглашений",
-			"mailDefinitionRef": "daeaa949-6872-478d-83cf-0627a98f5a92"
-		},
-		"60593ed7-d58f-472c-9103-c3899edd2800": {
-			"classDefinition": "com.sap.bpm.wfs.ui.MailTaskSymbol",
-			"x": 370,
-			"y": 85,
-			"width": 100,
-			"height": 60,
-			"object": "461200a3-8d94-4324-8d88-5305fb9d9e56"
-		},
-		"767c94bb-1bc1-4533-bafd-f787ea4a9b72": {
-			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"id": "sequenceflow10",
-			"name": "SequenceFlow10",
-			"sourceRef": "461200a3-8d94-4324-8d88-5305fb9d9e56",
-			"targetRef": "e9a683d3-c267-45d2-87d6-f7e2fbf7a725"
-		},
-		"df63ffd0-ca17-4d29-a3ae-003c4318c588": {
-			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "420,115 577,115",
-			"sourceSymbol": "60593ed7-d58f-472c-9103-c3899edd2800",
-			"targetSymbol": "a3240b8d-a944-4273-8da7-d79636fc93fb",
-			"object": "767c94bb-1bc1-4533-bafd-f787ea4a9b72"
-		},
 		"daeaa949-6872-478d-83cf-0627a98f5a92": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition1",
@@ -430,75 +499,6 @@
 			"subject": "Приглашение",
 			"text": "Приглашение",
 			"id": "maildefinition1"
-		},
-		"a7518173-f0f1-48eb-b0f7-a29d9b9306a2": {
-			"classDefinition": "com.sap.bpm.wfs.UserTask",
-			"subject": "Заявка на тендер №1",
-			"priority": "MEDIUM",
-			"isHiddenInLogForParticipant": false,
-			"supportsForward": false,
-			"userInterface": "sapui5://comsapbpmworkflow.comsapbpmwusformplayer/com.sap.bpm.wus.form.player",
-			"recipientUsers": "i053246",
-			"formReference": "/forms/approvals/DefaultTask.form",
-			"userInterfaceParams": [{
-				"key": "formId",
-				"value": "defaulttask"
-			}, {
-				"key": "formRevision",
-				"value": "1.0"
-			}],
-			"id": "usertask5",
-			"name": "Подготовка материалов для объявления тендера"
-		},
-		"0fccb593-f56f-4d68-a5cd-858ffc360194": {
-			"classDefinition": "com.sap.bpm.wfs.ui.UserTaskSymbol",
-			"x": 197,
-			"y": -67,
-			"width": 100,
-			"height": 60,
-			"object": "a7518173-f0f1-48eb-b0f7-a29d9b9306a2"
-		},
-		"20941c0e-003e-45c0-84bc-21a08d0990f7": {
-			"classDefinition": "com.sap.bpm.wfs.EndEvent",
-			"id": "endevent4",
-			"name": "EndEvent4"
-		},
-		"9e62952b-1688-4064-8d71-18781bb6cc61": {
-			"classDefinition": "com.sap.bpm.wfs.ui.EndEventSymbol",
-			"x": 402,
-			"y": -54.5,
-			"width": 35,
-			"height": 35,
-			"object": "20941c0e-003e-45c0-84bc-21a08d0990f7"
-		},
-		"bc1a19bd-a2ce-4213-a390-d8584ebfacf1": {
-			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"id": "sequenceflow11",
-			"name": "SequenceFlow11",
-			"sourceRef": "a7518173-f0f1-48eb-b0f7-a29d9b9306a2",
-			"targetRef": "20941c0e-003e-45c0-84bc-21a08d0990f7"
-		},
-		"c43c27be-67f9-47e1-b8b8-bd1ef2c2cf85": {
-			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "247,-37 419.5,-37",
-			"sourceSymbol": "0fccb593-f56f-4d68-a5cd-858ffc360194",
-			"targetSymbol": "9e62952b-1688-4064-8d71-18781bb6cc61",
-			"object": "bc1a19bd-a2ce-4213-a390-d8584ebfacf1"
-		},
-		"e8c1153c-4db5-4294-b275-dd328af29385": {
-			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"condition": "${context.stepName = \"InvitationPrep\"}",
-			"id": "sequenceflow12",
-			"name": "подготовка материалов тендера",
-			"sourceRef": "5afb7d35-0c0a-4c8d-8c89-300abeabeb14",
-			"targetRef": "a7518173-f0f1-48eb-b0f7-a29d9b9306a2"
-		},
-		"a88aece2-badf-4517-804f-b9e8f4c52fd2": {
-			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "-1,94.5 -1,-37 197.5,-37",
-			"sourceSymbol": "e69d9037-0dc8-4ad1-92d4-c0285dd78fb7",
-			"targetSymbol": "0fccb593-f56f-4d68-a5cd-858ffc360194",
-			"object": "e8c1153c-4db5-4294-b275-dd328af29385"
 		}
 	}
 }

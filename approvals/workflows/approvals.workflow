@@ -117,16 +117,9 @@
 			"priority": "MEDIUM",
 			"isHiddenInLogForParticipant": false,
 			"supportsForward": false,
-			"userInterface": "sapui5://comsapbpmworkflow.comsapbpmwusformplayer/com.sap.bpm.wus.form.player",
+			"userInterface": "sapui5://comsapbpmDocumentCentricTaskUI/com.sap.bpm.DocumentCentricTaskUI",
 			"recipientUsers": "i053246",
-			"formReference": "/forms/approvals/DefaultTask.form",
-			"userInterfaceParams": [{
-				"key": "formId",
-				"value": "defaulttask"
-			}, {
-				"key": "formRevision",
-				"value": "1.0"
-			}],
+			"userInterfaceParams": [],
 			"id": "usertask1",
 			"name": "Внесение изменений на основе замечаний"
 		},
@@ -136,16 +129,9 @@
 			"priority": "MEDIUM",
 			"isHiddenInLogForParticipant": false,
 			"supportsForward": false,
-			"userInterface": "sapui5://comsapbpmworkflow.comsapbpmwusformplayer/com.sap.bpm.wus.form.player",
-			"recipientUsers": "i053246",
-			"formReference": "/forms/approvals/DefaultTask.form",
-			"userInterfaceParams": [{
-				"key": "formId",
-				"value": "defaulttask"
-			}, {
-				"key": "formRevision",
-				"value": "1.0"
-			}],
+			"userInterface": "sapui5://comsapbpmDocumentCentricTaskUI/com.sap.bpm.DocumentCentricTaskUI",
+			"recipientUsers": "s.didenko@sap.com",
+			"userInterfaceParams": [],
 			"id": "usertask2",
 			"name": "Оценка заявки на предмет правильного составления"
 		},
@@ -297,7 +283,7 @@
 		},
 		"5c3ba555-7e70-4a19-a82f-6fba5a271cee": {
 			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"condition": "${context.lastDecision = \"approve\"}",
+			"condition": "${context.lastDecision == \"approve\"}",
 			"id": "sequenceflow8",
 			"name": "нет",
 			"sourceRef": "da06d650-c296-4f23-9d6f-66424bdf1e51",
@@ -326,7 +312,7 @@
 		},
 		"af2230bd-1620-42de-ae15-a69efeeb4e99": {
 			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"condition": "${context.lastDecision = \"approve\"}",
+			"condition": "${context.lastDecision == \"approve\"}",
 			"id": "sequenceflow18",
 			"name": "да",
 			"sourceRef": "3a7b8efa-7f0a-4c27-9fe9-45654a6e24d1",
@@ -359,6 +345,35 @@
 			"name": "SequenceFlow56",
 			"sourceRef": "ef622bcc-f00f-4c9c-bacf-63561ec12bb9",
 			"targetRef": "df128d33-7600-4758-90b5-b7dde63bf693"
+		},
+		"80353ab9-6554-4a59-9b57-454cca95a10b": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"id": "sequenceflow58",
+			"name": "SequenceFlow58",
+			"sourceRef": "59ba7167-7b6e-45ee-bbbc-a9a5a646d83f",
+			"targetRef": "9bba5869-c8c7-448a-a5cb-cec857e4327c"
+		},
+		"7eaf6749-25e5-4d6f-9c33-69f94944464a": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"id": "sequenceflow59",
+			"name": "SequenceFlow59",
+			"sourceRef": "df128d33-7600-4758-90b5-b7dde63bf693",
+			"targetRef": "e9dbbc94-757a-4aa2-8c98-a8b6a87e72f2"
+		},
+		"e1145e12-5b8e-4080-b986-44ec909ef8ee": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"condition": "${context.lastDecision == \"approve\"}",
+			"id": "sequenceflow60",
+			"name": "да",
+			"sourceRef": "19537c53-3dcd-4e57-8efe-3f753807168f",
+			"targetRef": "59ba7167-7b6e-45ee-bbbc-a9a5a646d83f"
+		},
+		"791962fa-8e69-4a7f-a29f-a78d3dfb220c": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"id": "sequenceflow61",
+			"name": "нет",
+			"sourceRef": "19537c53-3dcd-4e57-8efe-3f753807168f",
+			"targetRef": "c8218191-65e3-4163-8b33-b4f0f72c47a8"
 		},
 		"42fa7a2d-c526-4a02-b3ba-49b5168ba644": {
 			"classDefinition": "com.sap.bpm.wfs.ui.Diagram",
@@ -569,35 +584,12 @@
 			"targetSymbol": "e2b656cb-ff26-40f8-90b1-18726b218499",
 			"object": "30e15a98-de4f-493a-8728-5088fc531a18"
 		},
-		"62d7f4ed-4063-4c44-af8b-39050bd44926": {
-			"classDefinition": "com.sap.bpm.wfs.LastIDs",
-			"sequenceflow": 61,
-			"startevent": 1,
-			"endevent": 2,
-			"usertask": 18,
-			"exclusivegateway": 12,
-			"parallelgateway": 2
-		},
-		"80353ab9-6554-4a59-9b57-454cca95a10b": {
-			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"id": "sequenceflow58",
-			"name": "SequenceFlow58",
-			"sourceRef": "59ba7167-7b6e-45ee-bbbc-a9a5a646d83f",
-			"targetRef": "9bba5869-c8c7-448a-a5cb-cec857e4327c"
-		},
 		"1455d759-533f-46c1-976e-98f8f7a5cf49": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
 			"points": "559.5,394 559.5,491.25 724,491.25 724,589",
 			"sourceSymbol": "c5f16699-a52f-4633-ad05-edc3b0876ee9",
 			"targetSymbol": "6ddf2da1-cf8f-429d-9aab-36f0477c7add",
 			"object": "80353ab9-6554-4a59-9b57-454cca95a10b"
-		},
-		"7eaf6749-25e5-4d6f-9c33-69f94944464a": {
-			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"id": "sequenceflow59",
-			"name": "SequenceFlow59",
-			"sourceRef": "df128d33-7600-4758-90b5-b7dde63bf693",
-			"targetRef": "e9dbbc94-757a-4aa2-8c98-a8b6a87e72f2"
 		},
 		"406daf97-e2dc-42da-b056-b302d3b53074": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
@@ -606,14 +598,6 @@
 			"targetSymbol": "2ab0a112-feb3-4dc7-8ffe-365f5a30b609",
 			"object": "7eaf6749-25e5-4d6f-9c33-69f94944464a"
 		},
-		"e1145e12-5b8e-4080-b986-44ec909ef8ee": {
-			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"condition": "${context.lastDecision = \"approve\"}",
-			"id": "sequenceflow60",
-			"name": "да",
-			"sourceRef": "19537c53-3dcd-4e57-8efe-3f753807168f",
-			"targetRef": "59ba7167-7b6e-45ee-bbbc-a9a5a646d83f"
-		},
 		"4a844d4c-6117-4be0-a90c-8fdef0428c8c": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
 			"points": "658.5,116 658.5,250.5 556,250.5 556,378",
@@ -621,19 +605,21 @@
 			"targetSymbol": "c5f16699-a52f-4633-ad05-edc3b0876ee9",
 			"object": "e1145e12-5b8e-4080-b986-44ec909ef8ee"
 		},
-		"791962fa-8e69-4a7f-a29f-a78d3dfb220c": {
-			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"id": "sequenceflow61",
-			"name": "нет",
-			"sourceRef": "19537c53-3dcd-4e57-8efe-3f753807168f",
-			"targetRef": "c8218191-65e3-4163-8b33-b4f0f72c47a8"
-		},
 		"4ea5459c-7ecc-4958-84f6-82eba2dbd4d3": {
 			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
 			"points": "658.5,116 658.5,45 134,45 134,381",
 			"sourceSymbol": "bc2e54f2-3a95-4ec2-ae6d-f1c2fa14c545",
 			"targetSymbol": "b93d628c-9678-438b-8c3f-038efd1297fc",
 			"object": "791962fa-8e69-4a7f-a29f-a78d3dfb220c"
+		},
+		"62d7f4ed-4063-4c44-af8b-39050bd44926": {
+			"classDefinition": "com.sap.bpm.wfs.LastIDs",
+			"sequenceflow": 61,
+			"startevent": 1,
+			"endevent": 2,
+			"usertask": 18,
+			"exclusivegateway": 12,
+			"parallelgateway": 2
 		}
 	}
 }
