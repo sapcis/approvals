@@ -2,95 +2,16 @@ _schema-version: "3.2"
 ID: workflow
 version: 0.0.1
 modules:
-- name: approvals
-  type: com.sap.application.content
-  path: approvals
-  requires:
+  - name: approvals
+    type: com.sap.application.content
+    path: approvals
+    requires:
+      - name: workflow
+        parameters:
+          content-target: true
+resources:
   - name: workflow
     parameters:
-      content-target: true
-- name: approvals-destination-content
-  type: com.sap.application.content
-  requires:
-  - name: approvals-destination-service
-    parameters:
-      content-target: true
-  - name: approvals_html_repo_host
-    parameters:
-      service-key:
-        name: approvals_html_repo_host-key
-  - name: uaa_approvals
-    parameters:
-      service-key:
-        name: uaa_approvals-key
-  parameters:
-    content:
-      instance:
-        destinations:
-        - Name: DocumentViewer_approvals_html_repo_host
-          ServiceInstanceName: approvals-html5-app-host-service
-          ServiceKeyName: approvals_html_repo_host-key
-          sap.cloud.service: DocumentViewer
-        - Authentication: OAuth2UserTokenExchange
-          Name: DocumentViewer_uaa_approvals
-          ServiceInstanceName: approvals-xsuaa-service
-          ServiceKeyName: uaa_approvals-key
-          sap.cloud.service: DocumentViewer
-        existing_destinations_policy: ignore
-  build-parameters:
-    no-source: true
-- name: approvals_ui_deployer
-  type: com.sap.application.content
-  path: .
-  requires:
-  - name: approvals_html_repo_host
-    parameters:
-      content-target: true
-  build-parameters:
-    build-result: resources
-    requires:
-    - artifacts:
-      - DocumentView-content.zip
-      name: DocumentView
-      target-path: resources/
-- name: DocumentView
-  type: html5
-  path: DocumentView
-  build-parameters:
-    builder: custom
-    commands:
-    - npm run build
-    supported-platforms: []
-resources:
-- name: workflow
-  type: org.cloudfoundry.existing-service
-  parameters:
-    service: workflow
-    service-plan: standard
-- name: approvals-destination-service
-  type: org.cloudfoundry.managed-service
-  parameters:
-    config:
-      HTML5Runtime_enabled: true
-      version: 1.0.0
-    service: destination
-    service-name: approvals-destination-service
-    service-plan: lite
-- name: approvals_html_repo_host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-name: approvals-html5-app-host-service
-    service-plan: app-host
-- name: uaa_approvals
-  type: org.cloudfoundry.managed-service
-  parameters:
-    path: ./xs-security.json
-    service: xsuaa
-    service-name: approvals-xsuaa-service
-    service-plan: application
-build-parameters:
-  before-all:
-  - builder: custom
-    commands:
-    - npm install
+      service-plan: standard
+      service: workflow
+    type: org.cloudfoundry.existing-service
