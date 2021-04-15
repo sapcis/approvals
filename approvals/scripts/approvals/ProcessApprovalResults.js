@@ -1,9 +1,9 @@
 var currentStepNumber = $.context.currentStepNumber;
 var decision = {
-    "UserName": "Георгий Шутов",
+    "UserName": $.context.ProcessSteps[currentStepNumber].UserFullName,
     "WatcherUserName": "Сергей Диденко",
-    "StepName": $.context.ProcessSteps[$.context.approvalInfo.numberOfCompletedSteps].StepName,
-    "Department": $.context.ProcessSteps[$.context.approvalInfo.numberOfCompletedSteps].Department,
+    "StepName": $.context.ProcessSteps[currentStepNumber].StepName,
+    "Department": $.context.ProcessSteps[currentStepNumber].Department,
     "Decision": $.context.approvalStatus,
     "Comments": $.context.comments
 };
