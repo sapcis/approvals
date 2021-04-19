@@ -69,4 +69,7 @@ if ($.context.approvalStatus == "approve") {
 
     $.context.event = event;
 
+} else {
+    $.context.approvalInfo.numberOfCompletedSteps = 6;
+    $.context.currentStepNumber = 6;
 }

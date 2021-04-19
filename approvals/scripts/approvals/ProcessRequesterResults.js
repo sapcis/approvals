@@ -1,26 +1,72 @@
-/*
-// read from existing workflow context 
-var productInfo = $.context.productInfo; 
-var productName = productInfo.productName; 
-var productDescription = productInfo.productDescription;
-
-// read contextual information
-var taskDefinitionId = $.info.taskDefinitionId;
-
-// read user task information
-var lastUserTask1 = $.usertasks.usertask1.last;
-var userTaskSubject = lastUserTask1.subject;
-var userTaskProcessor = lastUserTask1.processor;
-var userTaskCompletedAt = lastUserTask1.completedAt;
-
-var userTaskStatusMessage = " User task '" + userTaskSubject + "' has been completed by " + userTaskProcessor + " at " + userTaskCompletedAt;
-
-// create new node 'product'
-var product = {
-		productDetails: productName  + " " + productDescription,
-		workflowStep: taskDefinitionId
+var currentStepNumber = $.context.currentStepNumber;
+var decision = {
+    "UserName": $.context.ProcessSteps[currentStepNumber].UserFullName,
+    "WatcherUserName": "Сергей Диденко",
+    "StepName": $.context.ProcessSteps[currentStepNumber].StepName,
+    "Department": $.context.ProcessSteps[currentStepNumber].Department,
+    "Decision": $.context.approvalStatus,
+    "Comments": $.context.comments
 };
+$.context.lastComment = $.context.comments;
 
-// write 'product' node to workflow context
-$.context.product = product;
-*/
+$.context.approvalHistory.push(decision);
+$.context.comments = "";
+
+var eventtype = ""
+if (currentStepNumber == 0) {
+    eventtype = "Обновление отчета. Оценка заявки";
+}
+if (currentStepNumber == 1) {
+    eventtype = "Обновление отчета. Разработка проекта приказа";
+}
+
+if (currentStepNumber == 2) {
+    eventtype = "Обновление отчета. Изучение проекта приказа";
+}
+
+if (currentStepNumber == 3) {
+    eventtype = "Обновление отчета. Подготовка проекта текстов объявлений";
+}
+
+if (currentStepNumber == 4) {
+    eventtype = "Обновление отчета. Изучение текста объявления и приглашения";
+}
+
+if (currentStepNumber == 5) {
+    eventtype = "Обновление отчета. Подготовка материалов для объявления тендера";
+}
+
+if ($.context.approvalStatus != "terminated") {
+    $.context.approvalInfo.numberOfCompletedSteps = 0;
+    currentStepNumber = 0;
+    $.context.currentStepNumber = currentStepNumber;
+    var currentUser = {
+        "User": $.context.ProcessSteps[currentStepNumber].User,
+        "UserFullName": $.context.ProcessSteps[currentStepNumber].UserFullName   
+    }
+    $.context.currentUser = currentUser;
+
+    var d = new Date();
+    $.context.date1 = d.toISOString();
+    var event = {
+        "processDefinitionId": "approvals",
+        "processInstanceId": $.info.workflowInstanceId,
+        "eventType": eventtype,
+        "timestamp": d.toISOString(),
+        "context": {
+            "businesskey": $.context.RequestId,
+            "Requester": $.context.RequesterFullname,
+            "Organization": $.context.Requester.Organization,
+            "RequesterEmail": $.context.Requester.Email,
+            "Materials": $.context.RequestDetails.Materials,
+            "Description": $.context.RequestDetails.Description,
+            "RequestId": $.context.RequestId,
+            "NetAmount": $.context.RequestDetails.NetAmount,
+            "CurrentStepName": $.context.ProcessSteps[$.context.approvalInfo.numberOfCompletedSteps].StepName,
+            "CurrentUserName": $.context.ProcessSteps[$.context.approvalInfo.numberOfCompletedSteps].UserFullName
+        }        
+    };
+
+    $.context.event = event;
+
+}

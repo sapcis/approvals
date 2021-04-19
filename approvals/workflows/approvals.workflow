@@ -532,7 +532,7 @@
 			"priority": "MEDIUM",
 			"isHiddenInLogForParticipant": false,
 			"supportsForward": false,
-			"userInterface": "sapui5://comsapbpmDocumentCentricTaskUI/com.sap.bpm.DocumentCentricTaskUI",
+			"userInterface": "sapui5://comsapbpmDocumentCentricReworkUI/com.sap.bpm.DocumentCentricReworkUI",
 			"recipientUsers": "s.didenko@sap.com, georgiy.shutov@sap.com",
 			"userInterfaceParams": [],
 			"id": "usertask1",
@@ -823,6 +823,12 @@
 			"name": "Срок исполнения истёкает - Уведомление",
 			"mailDefinitionRef": "d85224f5-ef53-488d-b4db-1c2d6c4d3d24"
 		},
+		"8c1020ae-81a3-44de-92b2-ac01b3c2c54f": {
+			"classDefinition": "com.sap.bpm.wfs.MailTask",
+			"id": "mailtask16",
+			"name": "Тендер успешно опубливокан",
+			"mailDefinitionRef": "10c8620e-d316-4fed-8b60-3df758ebf74e"
+		},
 		"738332a6-ebfa-4a47-b1f8-17d046885b2f": {
 			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
 			"id": "sequenceflow6",
@@ -910,7 +916,7 @@
 		},
 		"74c7578a-668d-4532-9e4e-6c2ca6244466": {
 			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"condition": "${context.approvalStatus == \"delete\"}",
+			"condition": "${context.approvalStatus == \"terminated\"}",
 			"id": "sequenceflow63",
 			"name": "Удалить заявку",
 			"sourceRef": "690abfb7-861b-403e-8112-5ed642b1b618",
@@ -1161,6 +1167,13 @@
 			"name": "SequenceFlow105",
 			"sourceRef": "62b7bc19-9a17-480b-8125-054d70486f87",
 			"targetRef": "de09caf5-0b75-433b-988f-9e27611b0f2c"
+		},
+		"464685ef-c036-4acd-bff7-3fd574d50e49": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"id": "sequenceflow106",
+			"name": "SequenceFlow106",
+			"sourceRef": "8c1020ae-81a3-44de-92b2-ac01b3c2c54f",
+			"targetRef": "91b2f74b-18f0-4a6b-930e-e498e6d83d51"
 		},
 		"42fa7a2d-c526-4a02-b3ba-49b5168ba644": {
 			"classDefinition": "com.sap.bpm.wfs.ui.Diagram",
@@ -2030,6 +2043,21 @@
 			"targetSymbol": "5e9189e6-b38b-4a31-a3e4-ac372c6054ab",
 			"object": "594c06de-29a1-4232-ae0b-b1d57c6fa637"
 		},
+		"4c1f129c-546d-44fc-8bc8-b754080eb28d": {
+			"classDefinition": "com.sap.bpm.wfs.ui.MailTaskSymbol",
+			"x": 2965,
+			"y": 365,
+			"width": 100,
+			"height": 60,
+			"object": "8c1020ae-81a3-44de-92b2-ac01b3c2c54f"
+		},
+		"1bb20286-af8a-4377-a829-4dc708d89b34": {
+			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
+			"points": "3015,395 3110.5,395",
+			"sourceSymbol": "4c1f129c-546d-44fc-8bc8-b754080eb28d",
+			"targetSymbol": "a2c124d2-bd41-4ce9-a72d-5f56aed39efb",
+			"object": "464685ef-c036-4acd-bff7-3fd574d50e49"
+		},
 		"90764261-6577-4807-b185-50e259081bee": {
 			"classDefinition": "com.sap.bpm.wfs.ui.BoundaryEventSymbol",
 			"x": -479.5,
@@ -2233,34 +2261,6 @@
 			"subject": "Срок выполнения истекает. Подготовка материалов для объявления тендера по Заявке № ${context.RequestId}.",
 			"reference": "/webcontent/approvals/DeadLineNotification.html",
 			"id": "maildefinition15"
-		},
-		"8c1020ae-81a3-44de-92b2-ac01b3c2c54f": {
-			"classDefinition": "com.sap.bpm.wfs.MailTask",
-			"id": "mailtask16",
-			"name": "Тендер успешно опубливокан",
-			"mailDefinitionRef": "10c8620e-d316-4fed-8b60-3df758ebf74e"
-		},
-		"4c1f129c-546d-44fc-8bc8-b754080eb28d": {
-			"classDefinition": "com.sap.bpm.wfs.ui.MailTaskSymbol",
-			"x": 2965,
-			"y": 365,
-			"width": 100,
-			"height": 60,
-			"object": "8c1020ae-81a3-44de-92b2-ac01b3c2c54f"
-		},
-		"464685ef-c036-4acd-bff7-3fd574d50e49": {
-			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"id": "sequenceflow106",
-			"name": "SequenceFlow106",
-			"sourceRef": "8c1020ae-81a3-44de-92b2-ac01b3c2c54f",
-			"targetRef": "91b2f74b-18f0-4a6b-930e-e498e6d83d51"
-		},
-		"1bb20286-af8a-4377-a829-4dc708d89b34": {
-			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "3015,395 3110.5,395",
-			"sourceSymbol": "4c1f129c-546d-44fc-8bc8-b754080eb28d",
-			"targetSymbol": "a2c124d2-bd41-4ce9-a72d-5f56aed39efb",
-			"object": "464685ef-c036-4acd-bff7-3fd574d50e49"
 		},
 		"10c8620e-d316-4fed-8b60-3df758ebf74e": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
