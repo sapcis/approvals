@@ -2,7 +2,7 @@ var approvalInfo = {
     numberOfApprovalSteps: 5,
     numberOfCompletedSteps: 0
 };
-
+$.context.mailList = "s.didenko@sap.com, georgiy.shutov@sap.com"
 $.context.RequesterFullname = $.context.Requester.LastName + " " + $.context.Requester.FirstName;
 $.context.currentStepNumber = 0;
 $.context.approvalInfo = approvalInfo;

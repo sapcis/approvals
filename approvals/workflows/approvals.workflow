@@ -142,7 +142,7 @@
 					"name": "Расмотрение полученных предложений"
 				},
 				"27604d75-4dd5-4dc7-935e-91614af20542": {
-					"name": "Оценка заявки "
+					"name": "Գնման հայտի գնահատում"
 				},
 				"da06d650-c296-4f23-9d6f-66424bdf1e51": {
 					"name": "Соответствует"
@@ -178,7 +178,7 @@
 					"name": "Обработка результатов проверки"
 				},
 				"41058592-6b0d-4596-bd4d-f7ec648e0d16": {
-					"name": "Уведомление Заявител о необходимости корректировки"
+					"name": "Уведомление Заявителя о необходимости корректировки"
 				},
 				"4c88c064-b979-42b8-b6b5-05ab4f8cefba": {
 					"name": "Уведомление о необх. разработки проекта приказа"
@@ -550,7 +550,7 @@
 		},
 		"27604d75-4dd5-4dc7-935e-91614af20542": {
 			"classDefinition": "com.sap.bpm.wfs.UserTask",
-			"subject": "Оценка Заявки  № ${context.RequestId}",
+			"subject": "Գնման հայտի գնահատում  № ${context.RequestId}",
 			"priority": "MEDIUM",
 			"isHiddenInLogForParticipant": false,
 			"supportsForward": false,
@@ -559,7 +559,7 @@
 			"userInterfaceParams": [],
 			"customAttributes": [],
 			"id": "usertask2",
-			"name": "Оценка заявки ",
+			"name": "Գնման հայտի գնահատում",
 			"dueDateRef": "10758f05-ca51-4243-abb6-9d2ad06e4fc8"
 		},
 		"da06d650-c296-4f23-9d6f-66424bdf1e51": {
@@ -672,7 +672,7 @@
 		"41058592-6b0d-4596-bd4d-f7ec648e0d16": {
 			"classDefinition": "com.sap.bpm.wfs.MailTask",
 			"id": "mailtask2",
-			"name": "Уведомление Заявител о необходимости корректировки",
+			"name": "Уведомление Заявителя о необходимости корректировки",
 			"mailDefinitionRef": "d1c806ad-74ca-4079-8b81-e8134fc4262b"
 		},
 		"4c88c064-b979-42b8-b6b5-05ab4f8cefba": {
@@ -837,6 +837,12 @@
 			"id": "mailtask16",
 			"name": "Тендер успешно опубливокан",
 			"mailDefinitionRef": "10c8620e-d316-4fed-8b60-3df758ebf74e"
+		},
+		"ddeefc0f-34a6-4976-859f-efc7d483e1f2": {
+			"classDefinition": "com.sap.bpm.wfs.ExclusiveGateway",
+			"id": "exclusivegateway14",
+			"name": "недостатки?",
+			"default": "5d603bae-5729-4d87-a2e5-dcfe3d0e04d0"
 		},
 		"738332a6-ebfa-4a47-b1f8-17d046885b2f": {
 			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
@@ -1183,6 +1189,21 @@
 			"name": "SequenceFlow106",
 			"sourceRef": "8c1020ae-81a3-44de-92b2-ac01b3c2c54f",
 			"targetRef": "91b2f74b-18f0-4a6b-930e-e498e6d83d51"
+		},
+		"5d603bae-5729-4d87-a2e5-dcfe3d0e04d0": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"id": "sequenceflow107",
+			"name": "нет",
+			"sourceRef": "ddeefc0f-34a6-4976-859f-efc7d483e1f2",
+			"targetRef": "c4ba7d3d-6c42-48cb-9351-433e04214a43"
+		},
+		"9cbcfa4a-703f-4397-9930-bf480e85aa7e": {
+			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
+			"condition": "${context.approvalStatus == \"reject\"}",
+			"id": "sequenceflow108",
+			"name": "да",
+			"sourceRef": "ddeefc0f-34a6-4976-859f-efc7d483e1f2",
+			"targetRef": "3ef86ec2-bcd7-4518-ab62-a157604fe4de"
 		},
 		"42fa7a2d-c526-4a02-b3ba-49b5168ba644": {
 			"classDefinition": "com.sap.bpm.wfs.ui.Diagram",
@@ -2070,6 +2091,26 @@
 			"targetSymbol": "a2c124d2-bd41-4ce9-a72d-5f56aed39efb",
 			"object": "464685ef-c036-4acd-bff7-3fd574d50e49"
 		},
+		"3e15f241-ad61-4c7d-a699-7370ed19e4e5": {
+			"classDefinition": "com.sap.bpm.wfs.ui.ExclusiveGatewaySymbol",
+			"x": 2570,
+			"y": 373,
+			"object": "ddeefc0f-34a6-4976-859f-efc7d483e1f2"
+		},
+		"ff38a7ad-8223-407e-b53f-ea68aca9f19f": {
+			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
+			"points": "2591,391.5 2906,391.5",
+			"sourceSymbol": "3e15f241-ad61-4c7d-a699-7370ed19e4e5",
+			"targetSymbol": "8d862053-3ed5-4856-85e5-caa1e79766a5",
+			"object": "5d603bae-5729-4d87-a2e5-dcfe3d0e04d0"
+		},
+		"9e4ab7f5-3eba-4035-945c-f9b4f8d05108": {
+			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
+			"points": "2591,373.5 2591,312.5 1514,312.5 1514,363.5",
+			"sourceSymbol": "3e15f241-ad61-4c7d-a699-7370ed19e4e5",
+			"targetSymbol": "2b2c54cd-8da3-4c7e-baeb-e05edff63cec",
+			"object": "9cbcfa4a-703f-4397-9930-bf480e85aa7e"
+		},
 		"90764261-6577-4807-b185-50e259081bee": {
 			"classDefinition": "com.sap.bpm.wfs.ui.BoundaryEventSymbol",
 			"x": -479.5,
@@ -2130,7 +2171,7 @@
 		"0f8308c3-2b50-4412-9989-f70438d5a169": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition1",
-			"to": "s.didenko@sap.com",
+			"to": "${context.mailList}",
 			"subject": "Оценка заявки №${context.RequestId}",
 			"reference": "/webcontent/approvals/NewRequestNotification.html",
 			"id": "maildefinition1"
@@ -2138,15 +2179,15 @@
 		"d1c806ad-74ca-4079-8b81-e8134fc4262b": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition2",
-			"to": "s.didenko@sap.com",
-			"subject": "Корректировка Заявки",
-			"text": "тест",
+			"to": "${context.mailList}",
+			"subject": "Отклонено. Корректировка Заявки №${context.RequestId}",
+			"reference": "/webcontent/approvals/RequestRejectedNotification.html",
 			"id": "maildefinition2"
 		},
 		"ec8cc205-369f-42d5-b1ef-70203284b7f1": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition4",
-			"to": "s.didenko@sap.com",
+			"to": "${context.mailList}",
 			"subject": "Уведомление о необх. разработки проекта приказа",
 			"reference": "/webcontent/approvals/DocumentDesignNotification.html",
 			"id": "maildefinition4"
@@ -2154,7 +2195,7 @@
 		"425b7422-1fa9-4dfc-a4a1-40e37a14219e": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition5",
-			"to": "s.didenko@sap.com",
+			"to": "${context.mailList}",
 			"subject": "Уведомление о подготовленном проекте приказа",
 			"reference": "/webcontent/approvals/DocumentApprovalNotification.html",
 			"id": "maildefinition5"
@@ -2162,7 +2203,7 @@
 		"463068bc-1a64-4a37-ab56-adedd1cbf50d": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition6",
-			"to": "s.didenko@sap.com",
+			"to": "${context.mailList}",
 			"subject": "Уведомление о необх. подготовки текстов приглашений",
 			"reference": "/webcontent/approvals/InvitationTextsPrepNotification.html",
 			"id": "maildefinition6"
@@ -2170,7 +2211,7 @@
 		"746aa91c-5cf9-4e37-91ba-9a555daaac2b": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition7",
-			"to": "s.didenko@sap.com",
+			"to": "${context.mailList}",
 			"subject": "Уведомление для комитета по оценке",
 			"reference": "/webcontent/approvals/InvitationTextsApprovalNotification.html",
 			"id": "maildefinition7"
@@ -2178,7 +2219,7 @@
 		"cebb4435-601c-4070-9fd5-e300ef92035a": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition8",
-			"to": "s.didenko@sap.com",
+			"to": "${context.mailList}",
 			"subject": "Подготовка материалов для объявления тендера",
 			"reference": "/webcontent/approvals/ContentPreparationNotificication.html",
 			"id": "maildefinition8"
@@ -2191,7 +2232,7 @@
 		"5f81182b-52bb-493f-ab7b-89b2973ce466": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition9",
-			"to": "s.didenko@sap.com, georgiy.shutov@sap.com",
+			"to": "${context.mailList}",
 			"subject": "Срок выполнения истекает. Изучение текстов объявлений и приглашений по Заявке № ${context.RequestId}.",
 			"reference": "/webcontent/approvals/DeadLineNotification.html",
 			"id": "maildefinition9"
@@ -2204,7 +2245,7 @@
 		"aea5f1ee-1c6b-4e0f-9321-4c7cf727bcf6": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition10",
-			"to": "s.didenko@sap.com, georgiy.shutov@sap.com",
+			"to": "${context.mailList}",
 			"subject": "Срок выполнения истекает. Оценка Заявки № ${context.RequestId}.",
 			"reference": "/webcontent/approvals/DeadLineNotification.html",
 			"id": "maildefinition10"
@@ -2217,7 +2258,7 @@
 		"b3ddfb7a-38c9-4771-a616-b09d3338dbac": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition11",
-			"to": "s.didenko@sap.com, georgiy.shutov@sap.com",
+			"to": "${context.mailList}",
 			"subject": "Срок выполнения истекает. Отработка замечаний по заявке №${context.RequestId}.",
 			"text": "Срок исполнения работ по задаче \"Рассмотрение полученных предложений\" истекает.\n\nЗаявка № ${context.RequestId}\nПредмет заявки: ${context.RequestDetails.Materials}\nСумма: ${context.RequestDetails.NetAmount}\nОбоснование Закупки: ${context.RequestDetails.Description}\n\nПроверьте список входящих задач на портале.\n\nАвтоматическая рассылка.",
 			"id": "maildefinition11"
@@ -2230,7 +2271,7 @@
 		"6aeab733-d46c-4604-8e2b-a9fabc354996": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition12",
-			"to": "s.didenko@sap.com, georgiy.shutov@sap.com",
+			"to": "${context.mailList}",
 			"subject": "Срок выполнения истекает. Разработка приказа по Заявке № ${context.RequestId}.",
 			"text": "Срок исполнения работ по задаче \"Разработка и отправка проекта приказа\" истекает.\n\nЗаявка № ${context.RequestId}\nПредмет заявки: ${context.RequestDetails.Materials}\nСумма: ${context.RequestDetails.NetAmount}\nОбоснование Закупки: ${context.RequestDetails.Description}\n\nПроверьте список входящих задач на портале.\n\nАвтоматическая рассылка.",
 			"id": "maildefinition12"
@@ -2243,7 +2284,7 @@
 		"0ed874ec-b399-4df5-b069-06170442c0ae": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition13",
-			"to": "s.didenko@sap.com, georgiy.shutov@sap.com",
+			"to": "${context.mailList}",
 			"subject": "Срок выполнения истекает. Разработка приказа по Заявке № ${context.RequestId}.",
 			"text": "Срок исполнения работ по задаче \"Изучение приказа\" истекает.\n\nЗаявка № ${context.RequestId}\nПредмет заявки: ${context.RequestDetails.Materials}\nСумма: ${context.RequestDetails.NetAmount}\nОбоснование Закупки: ${context.RequestDetails.Description}\n\nПроверьте список входящих задач на портале.\n\nАвтоматическая рассылка.",
 			"id": "maildefinition13"
@@ -2256,7 +2297,7 @@
 		"94fead89-98bd-46bd-9488-faa82feb2506": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition14",
-			"to": "s.didenko@sap.com, georgiy.shutov@sap.com",
+			"to": "${context.mailList}",
 			"subject": "Срок выполнения истекает. Подготовка текстов объявлени и приглашений по Заявке № ${context.RequestId}.",
 			"text": "Срок исполнения работ по задаче \"Подготовка текстов объявлени и приглашений\" истекает.\n\nЗаявка № ${context.RequestId}\nПредмет заявки: ${context.RequestDetails.Materials}\nСумма: ${context.RequestDetails.NetAmount}\nОбоснование Закупки: ${context.RequestDetails.Description}\n\nПроверьте список входящих задач на портале.\n\nАвтоматическая рассылка.",
 			"id": "maildefinition14"
@@ -2269,7 +2310,7 @@
 		"d85224f5-ef53-488d-b4db-1c2d6c4d3d24": {
 			"classDefinition": "com.sap.bpm.wfs.MailDefinition",
 			"name": "maildefinition15",
-			"to": "s.didenko@sap.com, georgiy.shutov@sap.com",
+			"to": "${context.mailList}",
 			"subject": "Срок выполнения истекает. Подготовка материалов для объявления тендера по Заявке № ${context.RequestId}.",
 			"reference": "/webcontent/approvals/DeadLineNotification.html",
 			"id": "maildefinition15"
@@ -2281,47 +2322,6 @@
 			"subject": "Заявка № ${context.RequestId} успешно обработана.",
 			"reference": "/webcontent/approvals/RequestSuccessfullyProcessedNotification.html",
 			"id": "maildefinition16"
-		},
-		"ddeefc0f-34a6-4976-859f-efc7d483e1f2": {
-			"classDefinition": "com.sap.bpm.wfs.ExclusiveGateway",
-			"id": "exclusivegateway14",
-			"name": "недостатки?",
-			"default": "5d603bae-5729-4d87-a2e5-dcfe3d0e04d0"
-		},
-		"3e15f241-ad61-4c7d-a699-7370ed19e4e5": {
-			"classDefinition": "com.sap.bpm.wfs.ui.ExclusiveGatewaySymbol",
-			"x": 2570,
-			"y": 373,
-			"object": "ddeefc0f-34a6-4976-859f-efc7d483e1f2"
-		},
-		"5d603bae-5729-4d87-a2e5-dcfe3d0e04d0": {
-			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"id": "sequenceflow107",
-			"name": "нет",
-			"sourceRef": "ddeefc0f-34a6-4976-859f-efc7d483e1f2",
-			"targetRef": "c4ba7d3d-6c42-48cb-9351-433e04214a43"
-		},
-		"ff38a7ad-8223-407e-b53f-ea68aca9f19f": {
-			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "2591,391.5 2906,391.5",
-			"sourceSymbol": "3e15f241-ad61-4c7d-a699-7370ed19e4e5",
-			"targetSymbol": "8d862053-3ed5-4856-85e5-caa1e79766a5",
-			"object": "5d603bae-5729-4d87-a2e5-dcfe3d0e04d0"
-		},
-		"9cbcfa4a-703f-4397-9930-bf480e85aa7e": {
-			"classDefinition": "com.sap.bpm.wfs.SequenceFlow",
-			"condition": "${context.approvalStatus == \"reject\"}",
-			"id": "sequenceflow108",
-			"name": "да",
-			"sourceRef": "ddeefc0f-34a6-4976-859f-efc7d483e1f2",
-			"targetRef": "3ef86ec2-bcd7-4518-ab62-a157604fe4de"
-		},
-		"9e4ab7f5-3eba-4035-945c-f9b4f8d05108": {
-			"classDefinition": "com.sap.bpm.wfs.ui.SequenceFlowSymbol",
-			"points": "2591,373.5 2591,312.5 1514,312.5 1514,363.5",
-			"sourceSymbol": "3e15f241-ad61-4c7d-a699-7370ed19e4e5",
-			"targetSymbol": "2b2c54cd-8da3-4c7e-baeb-e05edff63cec",
-			"object": "9cbcfa4a-703f-4397-9930-bf480e85aa7e"
 		}
 	}
 }
