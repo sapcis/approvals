@@ -11,6 +11,65 @@ $.context.approvalHistory = [];
 $.context.approvalStatus = "InProgress"
 $.context.numberOfApprovalStepsString = approvalInfo.numberOfApprovalSteps.toString();
 
+if ($.context.GetApproversRule.Response.Result.length > 0) {
+    $.context.isGetApproversRuleCompleted = true;
+
+    var ProcessSteps = [
+            {
+                "StepName": "Оценка заявки",
+                "StepId": 10,
+                "Department": "Координатор закупок",
+                "User": "s.didenko@sap.com",
+                "UserFullName": $.context.GetApproversRule.Response.Result[0].ApproverList.Step10Name
+            },
+            {
+                "StepName": "Разработка проекта приказа",
+                "StepId": 20,
+                "Department": "Координатор закупок",
+                "User": "s.didenko@sap.com",
+                "UserFullName": $.context.GetApproversRule.Response.Result[0].ApproverList.Step20Name
+            },
+            {
+                "StepName": "Изучение приказа",
+                "StepId": 30,
+                "Department": "Генеральный секретарь",
+                "User": "s.didenko@sap.com",
+                "UserFullName": $.context.GetApproversRule.Response.Result[0].ApproverList.Step30Name
+            },
+            {
+                "StepName": "Подготовка проекта текстов объявлений и пригл.",
+                "StepId": 40,
+                "Department": "Координатор закупок",
+                "User": "s.didenko@sap.com",
+                "UserFullName": $.context.GetApproversRule.Response.Result[0].ApproverList.Step40Name
+            },
+            {
+                "StepName": "Изучение текста объявления и приглашения",
+                "StepId": 50,
+                "Department": "Комитет по оценке",
+                "User": "s.didenko@sap.com",
+                "UserFullName": $.context.GetApproversRule.Response.Result[0].ApproverList.Step50Name
+            },
+            {
+                "StepName": "Подготовка материалов для объявления тендера",
+                "StepId": 60,
+                "Department": "Комитет по оценке",
+                "User": "s.didenko@sap.com",
+                "UserFullName": $.context.GetApproversRule.Response.Result[0].ApproverList.Step60Name
+            },
+            {
+                "StepName": "Расмотрение полученных предложений",
+                "StepId": 70,
+                "Department": "Заявитель",
+                "User": "s.didenko@sap.com",
+                "UserFullName": "Диденко С.М"
+            }
+        ];
+
+} else {
+    $.context.isGetApproversRuleCompleted = true;
+}
+
 // var ProcessSteps = [
 //         {
 //             "StepName": "Оценка заявки",
@@ -65,57 +124,57 @@ $.context.numberOfApprovalStepsString = approvalInfo.numberOfApprovalSteps.toStr
 
 
 
-var ProcessSteps = [
-        {
-            "StepName": "Оценка заявки",
-            "StepId": 10,
-            "Department": "Координатор закупок",
-            "User": "s.didenko@sap.com",
-            "UserFullName": "Васильев М.А."
-        },
-        {
-            "StepName": "Разработка проекта приказа",
-            "StepId": 20,
-            "Department": "Координатор закупок",
-            "User": "s.didenko@sap.com",
-            "UserFullName": "Петров П.П"
-        },
-        {
-            "StepName": "Изучение приказа",
-            "StepId": 30,
-            "Department": "Генеральный секретарь",
-            "User": "s.didenko@sap.com",
-            "UserFullName": "Сидоров С.М"
-        },
-        {
-            "StepName": "Подготовка проекта текстов объявлений и пригл.",
-            "StepId": 40,
-            "Department": "Координатор закупок",
-            "User": "s.didenko@sap.com",
-            "UserFullName": "Шутов Г.П"
-        },
-        {
-            "StepName": "Изучение текста объявления и приглашения",
-            "StepId": 50,
-            "Department": "Комитет по оценке",
-            "User": "s.didenko@sap.com",
-            "UserFullName": "Федечкин С.М"
-        },
-        {
-            "StepName": "Подготовка материалов для объявления тендера",
-            "StepId": 60,
-            "Department": "Комитет по оценке",
-            "User": "s.didenko@sap.com",
-            "UserFullName": "Колмогорцев С.М"
-        },
-        {
-            "StepName": "Расмотрение полученных предложений",
-            "StepId": 70,
-            "Department": "Заявитель",
-            "User": "s.didenko@sap.com",
-            "UserFullName": "Диденко С.М"
-        }
-    ];
+// var ProcessSteps = [
+//         {
+//             "StepName": "Оценка заявки",
+//             "StepId": 10,
+//             "Department": "Координатор закупок",
+//             "User": "s.didenko@sap.com",
+//             "UserFullName": "Васильев М.А."
+//         },
+//         {
+//             "StepName": "Разработка проекта приказа",
+//             "StepId": 20,
+//             "Department": "Координатор закупок",
+//             "User": "s.didenko@sap.com",
+//             "UserFullName": "Петров П.П"
+//         },
+//         {
+//             "StepName": "Изучение приказа",
+//             "StepId": 30,
+//             "Department": "Генеральный секретарь",
+//             "User": "s.didenko@sap.com",
+//             "UserFullName": "Сидоров С.М"
+//         },
+//         {
+//             "StepName": "Подготовка проекта текстов объявлений и пригл.",
+//             "StepId": 40,
+//             "Department": "Координатор закупок",
+//             "User": "s.didenko@sap.com",
+//             "UserFullName": "Шутов Г.П"
+//         },
+//         {
+//             "StepName": "Изучение текста объявления и приглашения",
+//             "StepId": 50,
+//             "Department": "Комитет по оценке",
+//             "User": "s.didenko@sap.com",
+//             "UserFullName": "Федечкин С.М"
+//         },
+//         {
+//             "StepName": "Подготовка материалов для объявления тендера",
+//             "StepId": 60,
+//             "Department": "Комитет по оценке",
+//             "User": "s.didenko@sap.com",
+//             "UserFullName": "Колмогорцев С.М"
+//         },
+//         {
+//             "StepName": "Расмотрение полученных предложений",
+//             "StepId": 70,
+//             "Department": "Заявитель",
+//             "User": "s.didenko@sap.com",
+//             "UserFullName": "Диденко С.М"
+//         }
+//     ];
 
 
 
